@@ -12,5 +12,9 @@ class PostService(val repository: Repository<Post>) {
         return repository.create(post)
     }
 
+    fun getById(id: Long): Post? {
+        return repository.get(id)
+    }
+
 
 }

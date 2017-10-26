@@ -19,6 +19,16 @@ fun main(args: Array<String>) {
 
                 ctx.json(mapOf(Pair("id",id))).status(201)
             }
+            path(":id", {
+                get { ctx ->
+                    val post = postService.getById(ctx.param("id")!!.toLong())
+                    if (post!=null) {
+                        ctx.json(post)
+                    } else {
+                        ctx.status(404)
+                    }
+                }
+            })
         })
 
 

@@ -26,4 +26,6 @@ class Repository<T> {
         return dataMap.values
     }
 
+    fun get(id: Long): T? {return dataMap[id]}
+
 }
