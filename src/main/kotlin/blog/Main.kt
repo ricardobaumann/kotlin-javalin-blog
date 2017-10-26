@@ -8,7 +8,6 @@ val postService = PostService(Repository<Post>())
 fun main(args: Array<String>) {
     val app = Javalin.start(7000)
     app.routes {
-
         path("/posts", {
             get { ctx ->
                 ctx.json(postService.getPosts())
@@ -28,9 +27,17 @@ fun main(args: Array<String>) {
                         ctx.status(404)
                     }
                 }
+                put { ctx ->
+                    val id = ctx.param("id")!!.toLong()
+                    val post = ctx.bodyAsClass(Post::class.java)
+                    postService.update(post,id)
+                    ctx.status(200)
+                }
+                delete { ctx ->
+                    postService.delete(ctx.param("id")!!.toLong())
+                    ctx.status(204)
+                }
             })
         })
-
-
     }
 }

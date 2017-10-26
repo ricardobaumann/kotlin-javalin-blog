@@ -16,5 +16,13 @@ class PostService(val repository: Repository<Post>) {
         return repository.get(id)
     }
 
+    fun update(post: Post, id: Long) {
+        repository.update(post,id)
+    }
+
+    fun delete(id: Long) {
+        repository.delete(id)
+    }
+
 
 }
